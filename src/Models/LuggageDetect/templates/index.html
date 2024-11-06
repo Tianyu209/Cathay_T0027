@@ -36,54 +36,22 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-12 text-center">
-                <h1>YOLO Video Stream</h1>
-                <img src="{{ url_for('video_feed') }}" alt="Video Feed" class="img-fluid">
+                <h1 class="display-4">Video Stream</h1>
+                <p class="lead">Object Detection using YOLO Model</p>
             </div>
         </div>
-        <div class="row mt-5">
-            <div class="col-12">
-                <h2 class="text-center">Label Distribution</h2>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Label</th>
-                            <th>Count</th>
-                        </tr>
-                    </thead>
-                    <tbody id="label-distribution-table">
-                        <!-- Table rows will be inserted here by JavaScript -->
-                    </tbody>
-                </table>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 stream-container">
+                <img src="{{ url_for('video_feed') }}" alt="Video Stream" class="img-fluid stream-image">
+                <button class="btn btn-primary mt-3" id="capture-button">Capture Image</button>
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap JS and dependencies -->
+    <!-- Include Bootstrap JS and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        function updateTable() {
-            fetch('/label_distribution')
-                .then(response => response.json())
-                .then(data => {
-                    const tableBody = document.getElementById('label-distribution-table');
-                    tableBody.innerHTML = '';
-                    for (const [label, count] of Object.entries(data)) {
-                        const row = document.createElement('tr');
-                        const labelCell = document.createElement('td');
-                        labelCell.textContent = label;
-                        const countCell = document.createElement('td');
-                        countCell.textContent = count;
-                        row.appendChild(labelCell);
-                        row.appendChild(countCell);
-                        tableBody.appendChild(row);
-                    }
-                });
-        }
-
-        setInterval(updateTable, 1000); // Update the table every second
-    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
