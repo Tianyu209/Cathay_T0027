@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Upload Image</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Depth Estimation</h1>
+        <h2 class="text-center">Please upload image here</h2>
+        <form method="post" enctype="multipart/form-data" action="{{ url_for('upload_file') }}" class="mt-4"
+            onsubmit="showLoadingScreen()">
+            <div class="form-group">
+                <label for="file">Choose an image to upload</label>
+                <input type="file" class="form-control-file" id="file" name="file" onchange="previewImage(event)">
+            </div>
+            <div class="form-group text-center">
+                <img id="imagePreview" src="#" alt="Image Preview" class="img-fluid" style="display: none;">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Upload</button>
+        </form>
+    </div>
+
+    <!-- 過渡頁面 -->
+    <div id="loadingScreen" class="loading-screen" style="display: none;">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <p class="text-center mt-3">Processing your image, please wait...</p>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = document.getElementById('imagePreview');
+                output.src = reader.result;
+                output.style.display = 'block';
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        function showLoadingScreen() {
+            document.querySelector('.container').style.display = 'none';
+            document.getElementById('loadingScreen').style.display = 'flex';
+        }
+    </script>
+</body>
+
+</html>

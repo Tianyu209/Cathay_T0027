@@ -56,7 +56,4 @@ class LuggageProcessor:
         depth_output = self.compute_depth(image_path=image_path)
         save_path = f'Models\ResultImages\depth_output_{image_path.split("\\")[-1]}.png'
         self.save_depth_output(depth_output, save_path)
-
-# model = LuggageProcessor()
-# path = r"TestImages\dp.jpg"
-# model.depth_test(image_path = path)
+        
