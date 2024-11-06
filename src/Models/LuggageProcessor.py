@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import json
 import matplotlib.pyplot as plt
-from Models.luggage_detection import yolov10_testing
+from Models.LuggageDetect import yolov10_testing
 from Models.Depth import DepthEstimator as dm
 class LuggageProcessor:
     
