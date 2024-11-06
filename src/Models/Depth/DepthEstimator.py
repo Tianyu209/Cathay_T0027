@@ -7,7 +7,7 @@ class DepthEstimator:
         # Load the model
         self.pipe = pipeline(task="depth-estimation", model="depth-anything/Depth-Anything-V2-Small-hf")
 
-    def estimate_depth(self, image_path=None, url=None):
+    def estimate_depth(self, image_path=None, url=None, retur_image=False):
         # Load image from URL or file path
         if url:
             image = Image.open(requests.get(url, stream=True).raw)
@@ -18,4 +18,6 @@ class DepthEstimator:
         
         # Run depth estimation and return a depth graph
         depth = self.pipe(image)["depth"]
+        if retur_image:
+            return depth, image
         return depth
