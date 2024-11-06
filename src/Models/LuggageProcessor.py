@@ -4,12 +4,12 @@ import json
 import matplotlib.pyplot as plt
 
 # from LuggageDetect import yolov10_testing
-# from Models.Depth import DepthEstimator as dm
+from Models.Depth import DepthEstimator as dm
 # from Models.Dimension import DimensionCal as dc
 
-from LuggageDetect import yolov10_testing
-from Depth import DepthEstimator as dm
-from Dimension import DimensionCal as dc
+# from LuggageDetect import yolov10_testing
+# from Depth import DepthEstimator as dm
+# from Dimension import DimensionCal as dc
 class LuggageProcessor:
     
     def __init__(self):
@@ -56,6 +56,7 @@ class LuggageProcessor:
         depth_output = self.compute_depth(image_path=image_path)
         save_path = f'Models\ResultImages\depth_output_{image_path.split("\\")[-1]}.png'
         self.save_depth_output(depth_output, save_path)
-model = LuggageProcessor()
-path = r"TestImages\OIP.jpeg"
-model.depth_test(image_path = path)
+
+# model = LuggageProcessor()
+# path = r"TestImages\dp.jpg"
+# model.depth_test(image_path = path)
